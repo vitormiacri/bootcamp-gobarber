@@ -30,6 +30,7 @@ class UserController {
     if (userExists) {
       return res.status(400).json({ error: 'Usuário já existe' });
     }
+
     const { id, name, email, provider } = await User.create(req.body);
 
     return res.json({
@@ -58,6 +59,7 @@ class UserController {
     if (!(await schema.isValid(req.body))) {
       return res.status(400).json({ error: 'Campos inválidos' });
     }
+
     const { email, oldPassword } = req.body;
     const user = await User.findByPk(req.userId);
 
